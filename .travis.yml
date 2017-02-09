@@ -1,0 +1,27 @@
+language: python
+python:
+  - "2.7"
+install:
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  - bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+
+  - conda config --add channels uvcdat
+  - conda config --set always_yes yes --set changeps1 no
+  - conda config --set show_channel_urls True
+
+  - ENV_NAME='testing'
+  - conda create --quiet -n $ENV_NAME python=$TRAVIS_PYTHON_VERSION
+  - source activate $ENV_NAME
+  - conda install --quiet --file conda-requirements.txt
+  - conda list
+  - conda info -a
+  - echo which python
+  - export F90_LIB="$HOME/miniconda/envs/$ENV_NAME"
+  - cd driver/src
+  - make -f Makefile.v2 cosp
+  - make -f Makefile.v2
+  - ./cosp_test_v2.0
+
+script:
+  python $HOME/dev_tools/test_cospImp.py  ../driver/data/output/ref1D ../driver/data/output/1D 1D
