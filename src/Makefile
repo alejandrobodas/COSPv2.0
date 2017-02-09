@@ -4,9 +4,9 @@
 ########################################################################
 # Compiler and flags
 # Intel (ifort)
-F90      = ifort
-F90FLAGS = -O3 #-fpp#-pg # -traceback -check bounds
-F90_LIB  = /usr/local/ifort
+# F90      = ifort
+# F90FLAGS = -O3 #-fpp#-pg # -traceback -check bounds
+# F90_LIB  = /usr/local/ifort
 
 # Portland Group (pgf90)
 #F90      = pgf90
