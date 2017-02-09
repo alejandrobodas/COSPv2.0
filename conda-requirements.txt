@@ -1,4 +1,4 @@
-gfortran
+libgfortran
 cmor <3
 netcdf-fortran
 udunits2
