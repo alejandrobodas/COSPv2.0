@@ -11,8 +11,8 @@
 #F90FLAGS = -Mpreprocess -O0 -g
 #F90_LIB  = /usr/local/pgf90
 # Gfortran (gfortran)
-F90      = gfortran
-F90FLAGS = -cpp -O3 -fbacktrace -fbounds-check
+#F90      = gfortran
+#F90FLAGS = -cpp -O3 -fbacktrace -fbounds-check
 #F90_LIB  = /usr/local/gfortran
 
 INC = /usr/local/include

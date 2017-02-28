@@ -2,6 +2,7 @@ language: python
 python:
   - "2.7"
 install:
+  - sudo apt-get install gfortran
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
   - bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
@@ -18,7 +19,9 @@ install:
   - conda list
   - conda info -a
   - echo which python
-  - export F90_LIB="$HOME/miniconda/envs/$ENV_NAME"
+  - export F90_LIB="/usr/lib64"
+  - export F90="gfortran"
+  - export F90FLAGS="-cpp -O3 -fbacktrace -fbounds-check"
   - cd driver/src
   - make -f Makefile.v2 cosp
   - make -f Makefile.v2
