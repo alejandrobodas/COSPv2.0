@@ -45,6 +45,11 @@
 ##########################################################################################
 import os,fnmatch,numpy,netCDF4,sys,argparse,warnings
 
+# These tests could be refactored using unittest, making test running easier
+import unittest
+# however an exit criteria is all that is required, we can use sys
+import sys
+
 # Get command line arguments
 parser = argparse.ArgumentParser(description='Read user specifications')
 parser.add_argument('dirOUT',metavar='COSP_output_data',type=str,nargs=1,
@@ -183,8 +188,14 @@ if (sum(noref) > 1):
 
 
 # Print summary for zero errors.
-if (sum(fileError) == 0):print "All Files Match"
+if (sum(fileError) == 0):
+    print "All Files Match"
+    # exit as a pass
+    sys.exit()
+else:
+    # exit and fail
+    sys.exit(1)
 
-print "############################################################################################"
+# print "############################################################################################"
 
 # END PROGRAM
