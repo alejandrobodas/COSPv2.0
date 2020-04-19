@@ -1,0 +1,19 @@
+language: python
+python:
+  - "3.6"
+install:
+  - sudo apt-get install gfortran
+  - sudo apt-get install libnetcdf-dev libnetcdff-dev
+  # Install nccmp (https://gitlab.com/remikz/nccmp)
+  - sudo add-apt-repository ppa:remik-ziemlinski/nccmp -y
+  - sudo apt-get update
+  - sudo apt-get install nccmp
+  - cd build
+  - make driver
+
+script:
+  - cd ../driver/run
+  - ./cosp2_test
+  - cd ../data/outputs/UKMO
+  - nccmp --data --force --quiet --statistics --Tolerance=0.001 cosp2_output_um.nc cosp2_output_um.ref.nc
+
